@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="mysql-connector-java-5.1.31.jar" />
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.0.38:3306/linjia" userId="root" password="linjia">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- <javaTypeResolver type="com.generator.MyJavaTypeResolver">
+			<property name="forceBigDecimals" value="false" />                                            类型解析器
+		</javaTypeResolver> -->
+
+		<javaModelGenerator targetPackage="test.model"
+			targetProject="../src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="test.dao"
+			targetProject="../src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="test.dao" targetProject="../src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="b_access_record" domainObjectName="AccessRecord">
+
+			<!-- 忽略列，不生成bean 字段 <ignoreColumn column="FRED" /> -->
+			<!-- 指定列的java数据类型 <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" 
+				/> 
+			<columnOverride column="template_code" jdbcType="VARCHAR" />-->
+		</table>
+
+	</context>
+</generatorConfiguration>
